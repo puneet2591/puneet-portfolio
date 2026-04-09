@@ -1,5 +1,5 @@
 import { Button } from "@/components/ui/button";
-import { Mail, Github, Linkedin, ExternalLink, Code2, Briefcase, Award, ChevronDown } from "lucide-react";
+import { Mail, Github, Linkedin, ExternalLink, Code2, Briefcase, Award, ChevronDown, Download } from "lucide-react";
 import { useEffect, useState } from "react";
 
 /**
@@ -236,7 +236,15 @@ export default function Home() {
       <section id="about" className="py-20 md:py-32 bg-white" data-animate>
         <div className="container">
           <div className="max-w-3xl mx-auto space-y-6 animate-fade-in">
-            <h2 className="text-4xl md:text-5xl font-bold text-primary">About Me</h2>
+            <div className="flex items-center justify-between">
+              <h2 className="text-4xl md:text-5xl font-bold text-primary">About Me</h2>
+              <a href="/Puneet_Mahajan_CV.pdf" download>
+                <Button className="bg-accent hover:bg-accent/90 text-white">
+                  <Download className="w-4 h-4 mr-2" />
+                  Download CV
+                </Button>
+              </a>
+            </div>
             <p className="text-lg text-foreground/80 leading-relaxed">
               I'm a Senior iOS Developer based in Pune, India, with 9+ years of experience crafting innovative mobile applications. My expertise spans Swift, SwiftUI, UIKit, and modern architectural patterns like MVVM and Clean Architecture.
             </p>
@@ -260,7 +268,15 @@ export default function Home() {
       {/* Skills Section */}
       <section id="skills" className="py-20 md:py-32 bg-gradient-to-b from-white to-slate-50" data-animate>
         <div className="container">
-          <h2 className="text-4xl md:text-5xl font-bold text-primary mb-16">Technical Skills</h2>
+          <div className="flex items-center justify-between mb-16">
+            <h2 className="text-4xl md:text-5xl font-bold text-primary">Technical Skills</h2>
+            <a href="/Puneet_Mahajan_CV.pdf" download>
+              <Button className="bg-accent hover:bg-accent/90 text-white">
+                <Download className="w-4 h-4 mr-2" />
+                Download CV
+              </Button>
+            </a>
+          </div>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {skills.map((skillGroup, idx) => (
               <div
@@ -291,7 +307,15 @@ export default function Home() {
       {/* Experience Section */}
       <section id="experience" className="py-20 md:py-32 bg-white" data-animate>
         <div className="container">
-          <h2 className="text-4xl md:text-5xl font-bold text-primary mb-16">Professional Experience</h2>
+          <div className="flex items-center justify-between mb-16">
+            <h2 className="text-4xl md:text-5xl font-bold text-primary">Professional Experience</h2>
+            <a href="/Puneet_Mahajan_CV.pdf" download>
+              <Button className="bg-accent hover:bg-accent/90 text-white">
+                <Download className="w-4 h-4 mr-2" />
+                Download CV
+              </Button>
+            </a>
+          </div>
           <div className="space-y-8">
             {experience.map((job, idx) => (
               <div
