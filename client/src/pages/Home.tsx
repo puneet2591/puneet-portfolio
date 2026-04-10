@@ -15,6 +15,26 @@ export default function Home() {
   const { theme, toggleTheme } = useTheme();
   const [scrolled, setScrolled] = useState(false);
   const [visibleSections, setVisibleSections] = useState<Set<string>>(() => new Set());
+  const [isThemeTransitioning, setIsThemeTransitioning] = useState(false);
+
+  const handleSmoothScroll = (e: React.MouseEvent<HTMLAnchorElement>) => {
+    const href = e.currentTarget.getAttribute("href");
+    if (href?.startsWith("#")) {
+      e.preventDefault();
+      const element = document.querySelector(href);
+      if (element) {
+        element.scrollIntoView({ behavior: "smooth", block: "start" });
+      }
+    }
+  };
+
+  const handleThemeToggle = () => {
+    setIsThemeTransitioning(true);
+    if (toggleTheme) {
+      toggleTheme();
+    }
+    setTimeout(() => setIsThemeTransitioning(false), 300);
+  };
 
   useEffect(() => {
     const handleScroll = () => {
@@ -164,32 +184,34 @@ export default function Home() {
         <div className="container flex items-center justify-between py-4 md:py-6">
           <div className="text-xl font-bold text-primary">PM</div>
           <div className="hidden md:flex gap-8">
-            <a href="#about" className="text-sm font-medium hover:text-accent transition-colors">
+            <a href="#about" onClick={handleSmoothScroll} className="text-sm font-medium hover:text-accent transition-colors cursor-pointer">
               About
             </a>
-            <a href="#skills" className="text-sm font-medium hover:text-accent transition-colors">
+            <a href="#skills" onClick={handleSmoothScroll} className="text-sm font-medium hover:text-accent transition-colors cursor-pointer">
               Skills
             </a>
-            <a href="#experience" className="text-sm font-medium hover:text-accent transition-colors">
+            <a href="#experience" onClick={handleSmoothScroll} className="text-sm font-medium hover:text-accent transition-colors cursor-pointer">
               Experience
             </a>
-            <a href="#projects" className="text-sm font-medium hover:text-accent transition-colors">
+            <a href="#projects" onClick={handleSmoothScroll} className="text-sm font-medium hover:text-accent transition-colors cursor-pointer">
               Projects
             </a>
-            <a href="#contact" className="text-sm font-medium hover:text-accent transition-colors">
+            <a href="#contact" onClick={handleSmoothScroll} className="text-sm font-medium hover:text-accent transition-colors cursor-pointer">
               Contact
             </a>
           </div>
           <div className="flex items-center gap-4">
             <button
-              onClick={toggleTheme}
-              className="p-2 rounded-lg hover:bg-accent/10 transition-colors"
+              onClick={handleThemeToggle}
+              className={`p-2 rounded-lg hover:bg-accent/10 transition-all duration-300 ${
+                isThemeTransitioning ? "scale-110 rotate-180" : "scale-100 rotate-0"
+              }`}
               aria-label="Toggle theme"
             >
               {theme === "dark" ? (
-                <Sun className="w-5 h-5 text-accent" />
+                <Sun className="w-5 h-5 text-accent transition-all duration-300" />
               ) : (
-                <Moon className="w-5 h-5 text-primary" />
+                <Moon className="w-5 h-5 text-primary transition-all duration-300" />
               )}
             </button>
             <a href="mailto:puneetonly12@gmail.com">
