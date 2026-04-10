@@ -1,15 +1,18 @@
 import { Button } from "@/components/ui/button";
-import { Mail, Github, Linkedin, ExternalLink, Code2, Briefcase, Award, ChevronDown, Download } from "lucide-react";
+import { Mail, Github, Linkedin, ExternalLink, Code2, Briefcase, Award, ChevronDown, Download, Moon, Sun } from "lucide-react";
 import { useEffect, useState } from "react";
+import { useTheme } from "@/contexts/ThemeContext";
 
 /**
  * Modern Minimalist Portfolio Design
  * Design Philosophy: Clean, professional aesthetic with smooth animations
  * Color Scheme: Deep slate blue (#1e293b) + Vibrant cyan (#06b6d4)
  * Typography: Poppins for headings, Inter for body
+ * Dark Mode: Full support with theme toggle in navigation
  */
 
 export default function Home() {
+  const { theme, toggleTheme } = useTheme();
   const [scrolled, setScrolled] = useState(false);
   const [visibleSections, setVisibleSections] = useState<Set<string>>(() => new Set());
 
@@ -99,6 +102,36 @@ export default function Home() {
 
   const projects = [
     {
+      title: "Sayge",
+      description: "A new way to learn. Sayge is a peer-to-peer learning app on iOS and Android that allows people to teach, learn, and make money. Built with modern iOS architecture and real-time synchronization.",
+      tech: ["Swift", "SwiftUI", "Firebase", "Real-time Database"],
+    },
+    {
+      title: "BoomID",
+      description: "The BoomID platform employs cutting-edge Identity Assurance measures to safeguard businesses and consumers from threats. It offers robust protection, ensuring security and trust in digital interactions.",
+      tech: ["Swift", "Security", "Authentication", "Encryption"],
+    },
+    {
+      title: "Citi Bank",
+      description: "Citi Mobile app provides the joy of banking at your fingertips. It is a one-stop solution to manage your accounts, investments and credit cards on your iPhone with seamless UX.",
+      tech: ["Swift", "UIKit", "Core Data", "REST APIs"],
+    },
+    {
+      title: "Ember",
+      description: "Powered by AI, EMBER is a mobile telehealth platform that connects patients with medical professionals within minutes. It offers quick, personalized care through a simple, easy-to-use app.",
+      tech: ["Swift", "SwiftUI", "AI Integration", "Real-time Communication"],
+    },
+    {
+      title: "Harmony Decision Maker",
+      description: "HARMONY Decision Maker guides you through the 5 Steps of the ProConCloud process to help you make better faster decisions when it really matters.",
+      tech: ["Swift", "MVVM", "Core Data", "Analytics"],
+    },
+    {
+      title: "ZeCharger",
+      description: "Find a phone charger within 5 minutes wherever you are (A 100% free service). ZeCharger recharges your smartphones in more than 1000 locations and makes your connected life more beautiful.",
+      tech: ["Swift", "Maps API", "Location Services", "Networking"],
+    },
+    {
       title: "CI Pipeline for iOS App",
       description: "Automated CI pipeline using GitHub Actions with build, test, and deployment workflows. Integrated Fastlane for build automation and improved release reliability.",
       tech: ["GitHub Actions", "Fastlane", "Swift", "CI/CD"],
@@ -125,7 +158,7 @@ export default function Home() {
       {/* Navigation */}
       <nav
         className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-          scrolled ? "bg-white shadow-lg" : "bg-transparent"
+          scrolled ? (theme === "dark" ? "bg-slate-900 shadow-lg" : "bg-white shadow-lg") : "bg-transparent"
         }`}
       >
         <div className="container flex items-center justify-between py-4 md:py-6">
@@ -147,11 +180,24 @@ export default function Home() {
               Contact
             </a>
           </div>
-          <a href="mailto:puneetonly12@gmail.com">
-            <Button size="sm" className="bg-accent hover:bg-accent/90">
-              Get in Touch
-            </Button>
-          </a>
+          <div className="flex items-center gap-4">
+            <button
+              onClick={toggleTheme}
+              className="p-2 rounded-lg hover:bg-accent/10 transition-colors"
+              aria-label="Toggle theme"
+            >
+              {theme === "dark" ? (
+                <Sun className="w-5 h-5 text-accent" />
+              ) : (
+                <Moon className="w-5 h-5 text-primary" />
+              )}
+            </button>
+            <a href="mailto:puneetonly12@gmail.com">
+              <Button size="sm" className="bg-accent hover:bg-accent/90">
+                Get in Touch
+              </Button>
+            </a>
+          </div>
         </div>
       </nav>
 
@@ -164,7 +210,7 @@ export default function Home() {
           backgroundPosition: "center",
         }}
       >
-        <div className="absolute inset-0 bg-white/95"></div>
+        <div className={`absolute inset-0 ${theme === "dark" ? "bg-slate-900/90" : "bg-white/95"}`}></div>
         <div className="container relative z-10">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
             {/* Left Content */}
@@ -233,7 +279,7 @@ export default function Home() {
       </section>
 
       {/* About Section */}
-      <section id="about" className="py-20 md:py-32 bg-white" data-animate>
+      <section id="about" className={`py-20 md:py-32 ${theme === "dark" ? "bg-slate-900" : "bg-white"}`} data-animate>
         <div className="container">
           <div className="max-w-3xl mx-auto space-y-6 animate-fade-in">
             <div className="flex items-center justify-between">
@@ -253,10 +299,7 @@ export default function Home() {
             </p>
             <div className="grid grid-cols-2 md:grid-cols-4 gap-4 pt-8">
               {achievements.map((achievement, idx) => (
-                <div
-                  key={idx}
-                  className="p-4 bg-accent/5 rounded-lg border border-accent/20 hover:border-accent/40 transition-colors"
-                >
+                <div key={idx} className={`p-4 rounded-lg ${theme === "dark" ? "bg-slate-800" : "bg-slate-100"}`}>
                   <p className="text-sm font-medium text-accent">{achievement}</p>
                 </div>
               ))}
@@ -266,222 +309,228 @@ export default function Home() {
       </section>
 
       {/* Skills Section */}
-      <section id="skills" className="py-20 md:py-32 bg-gradient-to-b from-white to-slate-50" data-animate>
+      <section id="skills" className={`py-20 md:py-32 ${theme === "dark" ? "bg-slate-800" : "bg-slate-50"}`} data-animate>
         <div className="container">
-          <div className="flex items-center justify-between mb-16">
-            <h2 className="text-4xl md:text-5xl font-bold text-primary">Technical Skills</h2>
-            <a href="/Puneet_Mahajan_CV.pdf" download>
-              <Button className="bg-accent hover:bg-accent/90 text-white">
-                <Download className="w-4 h-4 mr-2" />
-                Download CV
-              </Button>
-            </a>
-          </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {skills.map((skillGroup, idx) => (
-              <div
-                key={idx}
-                className="p-6 bg-white rounded-lg border border-border shadow-sm hover:shadow-md transition-all duration-300 hover:border-accent/30 animate-fade-in"
-                style={{ animationDelay: `${idx * 50}ms` }}
-              >
-                <div className="flex items-center gap-3 mb-4">
-                  <Code2 className="w-5 h-5 text-accent" />
-                  <h3 className="text-lg font-semibold text-primary">{skillGroup.category}</h3>
+          <div className="max-w-5xl mx-auto space-y-12 animate-fade-in">
+            <div className="flex items-center justify-between">
+              <h2 className="text-4xl md:text-5xl font-bold text-primary">Technical Skills</h2>
+              <a href="/Puneet_Mahajan_CV.pdf" download>
+                <Button className="bg-accent hover:bg-accent/90 text-white">
+                  <Download className="w-4 h-4 mr-2" />
+                  Download CV
+                </Button>
+              </a>
+            </div>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+              {skills.map((skill) => (
+                <div
+                  key={skill.category}
+                  className={`p-6 rounded-lg border ${
+                    theme === "dark"
+                      ? "bg-slate-900 border-slate-700"
+                      : "bg-white border-slate-200"
+                  } hover:shadow-lg transition-shadow`}
+                >
+                  <div className="flex items-center gap-2 mb-4">
+                    <Code2 className="w-5 h-5 text-accent" />
+                    <h3 className="font-bold text-lg">{skill.category}</h3>
+                  </div>
+                  <div className="flex flex-wrap gap-2">
+                    {skill.items.map((item) => (
+                      <span
+                        key={item}
+                        className={`px-3 py-1 rounded-full text-sm font-medium ${
+                          theme === "dark"
+                            ? "bg-accent/20 text-accent"
+                            : "bg-accent/10 text-accent"
+                        }`}
+                      >
+                        {item}
+                      </span>
+                    ))}
+                  </div>
                 </div>
-                <div className="flex flex-wrap gap-2">
-                  {skillGroup.items.map((skill, sidx) => (
-                    <span
-                      key={sidx}
-                      className="px-3 py-1 bg-accent/10 text-accent text-sm font-medium rounded-full hover:bg-accent/20 transition-colors"
-                    >
-                      {skill}
-                    </span>
-                  ))}
-                </div>
-              </div>
-            ))}
+              ))}
+            </div>
           </div>
         </div>
       </section>
 
       {/* Experience Section */}
-      <section id="experience" className="py-20 md:py-32 bg-white" data-animate>
+      <section id="experience" className={`py-20 md:py-32 ${theme === "dark" ? "bg-slate-900" : "bg-white"}`} data-animate>
         <div className="container">
-          <div className="flex items-center justify-between mb-16">
-            <h2 className="text-4xl md:text-5xl font-bold text-primary">Professional Experience</h2>
-            <a href="/Puneet_Mahajan_CV.pdf" download>
-              <Button className="bg-accent hover:bg-accent/90 text-white">
-                <Download className="w-4 h-4 mr-2" />
-                Download CV
-              </Button>
-            </a>
-          </div>
-          <div className="space-y-8">
-            {experience.map((job, idx) => (
-              <div
-                key={idx}
-                className="p-8 bg-gradient-to-r from-white to-slate-50 rounded-lg border border-border hover:border-accent/30 transition-all duration-300 hover:shadow-lg animate-fade-in"
-                style={{ animationDelay: `${idx * 100}ms` }}
-              >
-                <div className="flex items-start justify-between mb-4">
-                  <div>
-                    <h3 className="text-2xl font-bold text-primary">{job.title}</h3>
-                    <p className="text-accent font-medium">{job.company}</p>
+          <div className="max-w-4xl mx-auto space-y-12 animate-fade-in">
+            <div className="flex items-center justify-between">
+              <h2 className="text-4xl md:text-5xl font-bold text-primary">Professional Experience</h2>
+              <a href="/Puneet_Mahajan_CV.pdf" download>
+                <Button className="bg-accent hover:bg-accent/90 text-white">
+                  <Download className="w-4 h-4 mr-2" />
+                  Download CV
+                </Button>
+              </a>
+            </div>
+            <div className="space-y-8">
+              {experience.map((exp, idx) => (
+                <div
+                  key={idx}
+                  className={`p-6 rounded-lg border ${
+                    theme === "dark"
+                      ? "bg-slate-800 border-slate-700"
+                      : "bg-slate-50 border-slate-200"
+                  } hover:shadow-lg transition-shadow`}
+                >
+                  <div className="flex items-start justify-between mb-4">
+                    <div>
+                      <h3 className="text-2xl font-bold text-primary">{exp.title}</h3>
+                      <p className="text-accent font-medium">{exp.company}</p>
+                      <p className={`text-sm ${theme === "dark" ? "text-slate-400" : "text-slate-500"}`}>{exp.period}</p>
+                    </div>
+                    <Briefcase className="w-6 h-6 text-accent flex-shrink-0" />
                   </div>
-                  <span className="text-sm text-foreground/60 bg-accent/10 px-3 py-1 rounded-full">
-                    {job.period}
-                  </span>
+                  <ul className="space-y-2 mb-4">
+                    {exp.highlights.map((highlight, hidx) => (
+                      <li key={hidx} className={`text-sm flex gap-3 ${theme === "dark" ? "text-slate-300" : "text-slate-700"}`}>
+                        <span className="text-accent">•</span>
+                        <span>{highlight}</span>
+                      </li>
+                    ))}
+                  </ul>
+                  <div className="flex flex-wrap gap-2">
+                    {exp.tech.map((tech) => (
+                      <span
+                        key={tech}
+                        className={`px-3 py-1 rounded-full text-xs font-medium ${
+                          theme === "dark"
+                            ? "bg-accent/20 text-accent"
+                            : "bg-accent/10 text-accent"
+                        }`}
+                      >
+                        {tech}
+                      </span>
+                    ))}
+                  </div>
                 </div>
-                <ul className="space-y-2 mb-4">
-                  {job.highlights.map((highlight, hidx) => (
-                    <li key={hidx} className="text-foreground/80 flex items-start gap-3">
-                      <span className="text-accent mt-1">•</span>
-                      <span>{highlight}</span>
-                    </li>
-                  ))}
-                </ul>
-                <div className="flex flex-wrap gap-2">
-                  {job.tech.map((tech, tidx) => (
-                    <span key={tidx} className="px-2 py-1 bg-primary/10 text-primary text-xs font-medium rounded">
-                      {tech}
-                    </span>
-                  ))}
-                </div>
-              </div>
-            ))}
+              ))}
+            </div>
           </div>
         </div>
       </section>
 
       {/* Projects Section */}
-      <section id="projects" className="py-20 md:py-32 bg-gradient-to-b from-white to-slate-50" data-animate>
+      <section id="projects" className={`py-20 md:py-32 ${theme === "dark" ? "bg-slate-800" : "bg-slate-50"}`} data-animate>
         <div className="container">
-          <h2 className="text-4xl md:text-5xl font-bold text-primary mb-16">Featured Projects</h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            {projects.map((project, idx) => (
-              <div
-                key={idx}
-                className="p-8 bg-white rounded-lg border border-border hover:border-accent/50 transition-all duration-300 hover:shadow-lg group animate-fade-in"
-                style={{ animationDelay: `${idx * 100}ms` }}
-              >
-                <div className="flex items-start justify-between mb-4">
-                  <Briefcase className="w-6 h-6 text-accent" />
-                  {project.link && (
-                    <a href={project.link} target="_blank" rel="noopener noreferrer">
-                      <ExternalLink className="w-5 h-5 text-foreground/40 group-hover:text-accent transition-colors" />
-                    </a>
-                  )}
+          <div className="max-w-5xl mx-auto space-y-12 animate-fade-in">
+            <h2 className="text-4xl md:text-5xl font-bold text-primary">Featured Projects</h2>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+              {projects.map((project, idx) => (
+                <div
+                  key={idx}
+                  className={`rounded-lg overflow-hidden border transition-all hover:shadow-xl hover:-translate-y-1 ${
+                    theme === "dark"
+                      ? "bg-slate-900 border-slate-700"
+                      : "bg-white border-slate-200"
+                  }`}
+                >
+                  <div className="p-6 space-y-4">
+                    <div className="flex items-start justify-between">
+                      <h3 className="text-xl font-bold text-primary flex-1">{project.title}</h3>
+                      {project.link && (
+                        <a href={project.link} target="_blank" rel="noopener noreferrer" className="text-accent hover:text-accent/80">
+                          <ExternalLink className="w-5 h-5" />
+                        </a>
+                      )}
+                    </div>
+                    <p className={`text-sm leading-relaxed ${theme === "dark" ? "text-slate-300" : "text-slate-600"}`}>
+                      {project.description}
+                    </p>
+                    <div className="flex flex-wrap gap-2 pt-4">
+                      {project.tech.map((tech) => (
+                        <span
+                          key={tech}
+                          className={`px-3 py-1 rounded-full text-xs font-medium ${
+                            theme === "dark"
+                              ? "bg-accent/20 text-accent"
+                              : "bg-accent/10 text-accent"
+                          }`}
+                        >
+                          {tech}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
                 </div>
-                <h3 className="text-xl font-bold text-primary mb-2">{project.title}</h3>
-                <p className="text-foreground/80 mb-4 leading-relaxed">{project.description}</p>
-                <div className="flex flex-wrap gap-2">
-                  {project.tech.map((tech, tidx) => (
-                    <span key={tidx} className="px-3 py-1 bg-accent/10 text-accent text-sm font-medium rounded-full">
-                      {tech}
-                    </span>
-                  ))}
-                </div>
-              </div>
-            ))}
+              ))}
+            </div>
           </div>
         </div>
       </section>
 
       {/* Certifications Section */}
-      <section className="py-20 md:py-32 bg-white" data-animate>
+      <section className={`py-20 md:py-32 ${theme === "dark" ? "bg-slate-900" : "bg-white"}`} data-animate>
         <div className="container">
-          <h2 className="text-4xl md:text-5xl font-bold text-primary mb-16">Certifications & Awards</h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            {certifications.map((cert, idx) => (
-              <div
-                key={idx}
-                className="p-6 bg-gradient-to-r from-accent/5 to-primary/5 rounded-lg border border-accent/20 flex items-center gap-4 hover:border-accent/40 transition-colors animate-fade-in"
-                style={{ animationDelay: `${idx * 50}ms` }}
-              >
-                <Award className="w-6 h-6 text-accent flex-shrink-0" />
-                <p className="font-medium text-foreground">{cert}</p>
-              </div>
-            ))}
+          <div className="max-w-4xl mx-auto space-y-12 animate-fade-in">
+            <h2 className="text-4xl md:text-5xl font-bold text-primary">Certifications & Awards</h2>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              {certifications.map((cert, idx) => (
+                <div
+                  key={idx}
+                  className={`p-6 rounded-lg flex items-start gap-4 border ${
+                    theme === "dark"
+                      ? "bg-slate-800 border-slate-700"
+                      : "bg-slate-50 border-slate-200"
+                  }`}
+                >
+                  <Award className="w-6 h-6 text-accent flex-shrink-0 mt-1" />
+                  <p className="font-medium text-foreground">{cert}</p>
+                </div>
+              ))}
+            </div>
           </div>
         </div>
       </section>
 
       {/* Contact Section */}
-      <section id="contact" className="py-20 md:py-32 bg-gradient-to-r from-primary to-primary/90 text-white" data-animate>
-        <div className="container text-center space-y-8">
-          <h2 className="text-4xl md:text-5xl font-bold">Let's Work Together</h2>
-          <p className="text-lg text-white/90 max-w-2xl mx-auto">
-            I'm always interested in hearing about new projects and opportunities. Feel free to reach out!
-          </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center pt-8">
-            <a href="mailto:puneetonly12@gmail.com">
-              <Button className="bg-white text-primary hover:bg-white/90 w-full sm:w-auto">
-                <Mail className="w-4 h-4 mr-2" />
-                Email Me
-              </Button>
-            </a>
-            <a href="https://www.linkedin.com/in/puneetmahajan25" target="_blank" rel="noopener noreferrer">
-              <Button variant="outline" className="border-white text-white hover:bg-white/10 w-full sm:w-auto">
-                <Linkedin className="w-4 h-4 mr-2" />
-                LinkedIn
-              </Button>
-            </a>
-            <a href="https://github.com/puneet2591" target="_blank" rel="noopener noreferrer">
-              <Button variant="outline" className="border-white text-white hover:bg-white/10 w-full sm:w-auto">
-                <Github className="w-4 h-4 mr-2" />
-                GitHub
-              </Button>
-            </a>
+      <section id="contact" className={`py-20 md:py-32 ${theme === "dark" ? "bg-slate-800" : "bg-slate-50"}`} data-animate>
+        <div className="container">
+          <div className="max-w-2xl mx-auto text-center space-y-8 animate-fade-in">
+            <div className="space-y-4">
+              <h2 className="text-4xl md:text-5xl font-bold text-primary">Let's Work Together</h2>
+              <p className={`text-lg ${theme === "dark" ? "text-slate-300" : "text-slate-600"}`}>
+                I'm always interested in hearing about new projects and opportunities. Feel free to reach out!
+              </p>
+            </div>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <a href="mailto:puneetonly12@gmail.com">
+                <Button className="bg-primary hover:bg-primary/90 text-white w-full sm:w-auto">
+                  <Mail className="w-4 h-4 mr-2" />
+                  Email Me
+                </Button>
+              </a>
+              <a href="https://www.linkedin.com/in/puneetmahajan25" target="_blank" rel="noopener noreferrer">
+                <Button variant="outline" className="border-accent text-accent hover:bg-accent/10 w-full sm:w-auto">
+                  <Linkedin className="w-4 h-4 mr-2" />
+                  LinkedIn
+                </Button>
+              </a>
+              <a href="https://github.com/puneet2591" target="_blank" rel="noopener noreferrer">
+                <Button variant="outline" className="border-accent text-accent hover:bg-accent/10 w-full sm:w-auto">
+                  <Github className="w-4 h-4 mr-2" />
+                  GitHub
+                </Button>
+              </a>
+            </div>
           </div>
         </div>
       </section>
 
       {/* Footer */}
-      <footer className="bg-primary text-white/80 py-8 border-t border-white/10">
-        <div className="container text-center text-sm">
-          <p>© 2025 Puneet Mahajan. All rights reserved.</p>
+      <footer className={`py-8 border-t ${theme === "dark" ? "bg-slate-900 border-slate-700" : "bg-white border-slate-200"}`}>
+        <div className="container text-center">
+          <p className={`text-sm ${theme === "dark" ? "text-slate-400" : "text-slate-600"}`}>
+            © 2025 Puneet Mahajan. All rights reserved.
+          </p>
         </div>
       </footer>
-
-      {/* Animations */}
-      <style>{`
-        @keyframes fadeIn {
-          from {
-            opacity: 0;
-            transform: translateY(20px);
-          }
-          to {
-            opacity: 1;
-            transform: translateY(0);
-          }
-        }
-
-        @keyframes fadeInDelayed {
-          from {
-            opacity: 0;
-            transform: scale(0.95);
-          }
-          to {
-            opacity: 1;
-            transform: scale(1);
-          }
-        }
-
-        .animate-fade-in {
-          animation: fadeIn 0.6s ease-out forwards;
-          opacity: 0;
-        }
-
-        .animate-fade-in-delayed {
-          animation: fadeInDelayed 0.8s ease-out forwards;
-          opacity: 0;
-          animation-delay: 0.2s;
-        }
-
-        [data-animate] .animate-fade-in {
-          animation: fadeIn 0.6s ease-out forwards;
-        }
-      `}</style>
     </div>
   );
 }
