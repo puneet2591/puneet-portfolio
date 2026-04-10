@@ -60,7 +60,7 @@ export default function Home() {
         "Reduced API latency by 25% through optimization",
         "Implemented Swift Concurrency (async/await) and Combine",
       ],
-      tech: ["Swift", "SwiftUI", "Combine", "GitHub Actions", "Firebase"],
+      tech: ["Swift", "SwiftUI", "Combine", "Async/Await", "GitHub Actions", "Firebase", "REST APIs", "URLSession", "MVVM", "Core Data", "Fastlane", "XCTest"],
     },
     {
       title: "Senior Software Engineer iOS",
@@ -71,7 +71,7 @@ export default function Home() {
         "Architected CI pipelines using GitHub Actions",
         "Managed dependencies with SPM and CocoaPods",
       ],
-      tech: ["Swift", "SwiftUI", "Combine", "XCTest", "Firebase"],
+      tech: ["Swift", "SwiftUI", "Combine", "XCTest", "Firebase", "MVVM", "Clean Architecture", "SPM", "CocoaPods", "GitHub Actions", "Fastlane", "GitFlow", "CI/CD"],
     },
     {
       title: "iOS Developer",
@@ -82,7 +82,7 @@ export default function Home() {
         "Collaborated with product and design teams",
         "Integrated RESTful APIs and cloud-based solutions",
       ],
-      tech: ["UIKit", "Storyboard", "MVVM", "Git"],
+      tech: ["UIKit", "Storyboard", "MVVM", "Git", "REST APIs", "URLSession", "Core Data", "Codable", "JSON Parsing", "Xcode", "Agile"],
     },
     {
       title: "iOS Developer",
@@ -93,7 +93,7 @@ export default function Home() {
         "Implemented CI/CD pipelines and automated testing",
         "Followed Agile/Scrum methodologies",
       ],
-      tech: ["UIKit", "Swift", "Objective-C", "Firebase", "XCTest"],
+      tech: ["UIKit", "Swift", "Objective-C", "Firebase", "XCTest", "MVC", "Git", "App Store Connect", "Instruments", "Debugging", "Performance Optimization", "Agile/Scrum"],
     },
   ];
 
