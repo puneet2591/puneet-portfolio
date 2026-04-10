@@ -279,7 +279,7 @@ export default function Home() {
       </section>
 
       {/* About Section */}
-      <section id="about" className={`py-20 md:py-32 ${theme === "dark" ? "bg-slate-900" : "bg-white"}`} data-animate>
+      <section id="about" className={`py-20 md:py-32 ${theme === "dark" ? "bg-slate-950" : "bg-white"}`} data-animate>
         <div className="container">
           <div className="max-w-3xl mx-auto space-y-6 animate-fade-in">
             <div className="flex items-center justify-between">
@@ -291,16 +291,16 @@ export default function Home() {
                 </Button>
               </a>
             </div>
-            <p className="text-lg text-foreground/80 leading-relaxed">
+            <p className={`text-lg leading-relaxed ${theme === "dark" ? "text-slate-200" : "text-foreground/80"}`}>
               I'm a Senior iOS Developer based in Pune, India, with 9+ years of experience crafting innovative mobile applications. My expertise spans Swift, SwiftUI, UIKit, and modern architectural patterns like MVVM and Clean Architecture.
             </p>
-            <p className="text-lg text-foreground/80 leading-relaxed">
+            <p className={`text-lg leading-relaxed ${theme === "dark" ? "text-slate-200" : "text-foreground/80"}`}>
               Throughout my career, I've consistently delivered high-quality products on time, achieving a 95% on-time delivery rate. I'm passionate about mentoring junior developers, optimizing performance, and implementing robust CI/CD pipelines using GitHub Actions and Fastlane.
             </p>
             <div className="grid grid-cols-2 md:grid-cols-4 gap-4 pt-8">
               {achievements.map((achievement, idx) => (
-                <div key={idx} className={`p-4 rounded-lg ${theme === "dark" ? "bg-slate-800" : "bg-slate-100"}`}>
-                  <p className="text-sm font-medium text-accent">{achievement}</p>
+                <div key={idx} className={`p-4 rounded-lg ${theme === "dark" ? "bg-slate-800 border border-slate-700" : "bg-slate-100"}`}>
+                  <p className={`text-sm font-medium ${theme === "dark" ? "text-slate-100" : "text-accent"}`}>{achievement}</p>
                 </div>
               ))}
             </div>
@@ -309,7 +309,7 @@ export default function Home() {
       </section>
 
       {/* Skills Section */}
-      <section id="skills" className={`py-20 md:py-32 ${theme === "dark" ? "bg-slate-800" : "bg-slate-50"}`} data-animate>
+      <section id="skills" className={`py-20 md:py-32 ${theme === "dark" ? "bg-slate-900" : "bg-slate-50"}`} data-animate>
         <div className="container">
           <div className="max-w-5xl mx-auto space-y-12 animate-fade-in">
             <div className="flex items-center justify-between">
@@ -327,13 +327,13 @@ export default function Home() {
                   key={skill.category}
                   className={`p-6 rounded-lg border ${
                     theme === "dark"
-                      ? "bg-slate-900 border-slate-700"
+                      ? "bg-slate-800 border-slate-700"
                       : "bg-white border-slate-200"
                   } hover:shadow-lg transition-shadow`}
                 >
                   <div className="flex items-center gap-2 mb-4">
                     <Code2 className="w-5 h-5 text-accent" />
-                    <h3 className="font-bold text-lg">{skill.category}</h3>
+                    <h3 className={`font-bold text-lg ${theme === "dark" ? "text-slate-100" : "text-foreground"}`}>{skill.category}</h3>
                   </div>
                   <div className="flex flex-wrap gap-2">
                     {skill.items.map((item) => (
@@ -341,7 +341,7 @@ export default function Home() {
                         key={item}
                         className={`px-3 py-1 rounded-full text-sm font-medium ${
                           theme === "dark"
-                            ? "bg-accent/20 text-accent"
+                            ? "bg-cyan-500/20 text-cyan-300"
                             : "bg-accent/10 text-accent"
                         }`}
                       >
@@ -357,7 +357,7 @@ export default function Home() {
       </section>
 
       {/* Experience Section */}
-      <section id="experience" className={`py-20 md:py-32 ${theme === "dark" ? "bg-slate-900" : "bg-white"}`} data-animate>
+      <section id="experience" className={`py-20 md:py-32 ${theme === "dark" ? "bg-slate-950" : "bg-white"}`} data-animate>
         <div className="container">
           <div className="max-w-4xl mx-auto space-y-12 animate-fade-in">
             <div className="flex items-center justify-between">
@@ -381,16 +381,16 @@ export default function Home() {
                 >
                   <div className="flex items-start justify-between mb-4">
                     <div>
-                      <h3 className="text-2xl font-bold text-primary">{exp.title}</h3>
-                      <p className="text-accent font-medium">{exp.company}</p>
+                      <h3 className={`text-2xl font-bold ${theme === "dark" ? "text-blue-400" : "text-primary"}`}>{exp.title}</h3>
+                      <p className={`font-medium ${theme === "dark" ? "text-cyan-400" : "text-accent"}`}>{exp.company}</p>
                       <p className={`text-sm ${theme === "dark" ? "text-slate-400" : "text-slate-500"}`}>{exp.period}</p>
                     </div>
                     <Briefcase className="w-6 h-6 text-accent flex-shrink-0" />
                   </div>
                   <ul className="space-y-2 mb-4">
                     {exp.highlights.map((highlight, hidx) => (
-                      <li key={hidx} className={`text-sm flex gap-3 ${theme === "dark" ? "text-slate-300" : "text-slate-700"}`}>
-                        <span className="text-accent">•</span>
+                      <li key={hidx} className={`text-sm flex gap-3 ${theme === "dark" ? "text-slate-200" : "text-slate-700"}`}>
+                        <span className={theme === "dark" ? "text-cyan-400" : "text-accent"}>•</span>
                         <span>{highlight}</span>
                       </li>
                     ))}
@@ -401,7 +401,7 @@ export default function Home() {
                         key={tech}
                         className={`px-3 py-1 rounded-full text-xs font-medium ${
                           theme === "dark"
-                            ? "bg-accent/20 text-accent"
+                            ? "bg-cyan-500/20 text-cyan-300"
                             : "bg-accent/10 text-accent"
                         }`}
                       >
@@ -480,8 +480,8 @@ export default function Home() {
                       : "bg-slate-50 border-slate-200"
                   }`}
                 >
-                  <Award className="w-6 h-6 text-accent flex-shrink-0 mt-1" />
-                  <p className="font-medium text-foreground">{cert}</p>
+                  <Award className={`w-6 h-6 flex-shrink-0 mt-1 ${theme === "dark" ? "text-cyan-400" : "text-accent"}`} />
+                  <p className={`font-medium ${theme === "dark" ? "text-slate-100" : "text-foreground"}`}>{cert}</p>
                 </div>
               ))}
             </div>
@@ -495,7 +495,7 @@ export default function Home() {
           <div className="max-w-2xl mx-auto text-center space-y-8 animate-fade-in">
             <div className="space-y-4">
               <h2 className="text-4xl md:text-5xl font-bold text-primary">Let's Work Together</h2>
-              <p className={`text-lg ${theme === "dark" ? "text-slate-300" : "text-slate-600"}`}>
+              <p className={`text-lg ${theme === "dark" ? "text-slate-200" : "text-slate-600"}`}>
                 I'm always interested in hearing about new projects and opportunities. Feel free to reach out!
               </p>
             </div>
@@ -507,13 +507,21 @@ export default function Home() {
                 </Button>
               </a>
               <a href="https://www.linkedin.com/in/puneetmahajan25" target="_blank" rel="noopener noreferrer">
-                <Button variant="outline" className="border-accent text-accent hover:bg-accent/10 w-full sm:w-auto">
+                <Button variant="outline" className={`border-2 w-full sm:w-auto ${
+                  theme === "dark"
+                    ? "border-cyan-400 text-cyan-400 hover:bg-cyan-400/10"
+                    : "border-accent text-accent hover:bg-accent/10"
+                }`}>
                   <Linkedin className="w-4 h-4 mr-2" />
                   LinkedIn
                 </Button>
               </a>
               <a href="https://github.com/puneet2591" target="_blank" rel="noopener noreferrer">
-                <Button variant="outline" className="border-accent text-accent hover:bg-accent/10 w-full sm:w-auto">
+                <Button variant="outline" className={`border-2 w-full sm:w-auto ${
+                  theme === "dark"
+                    ? "border-cyan-400 text-cyan-400 hover:bg-cyan-400/10"
+                    : "border-accent text-accent hover:bg-accent/10"
+                }`}>
                   <Github className="w-4 h-4 mr-2" />
                   GitHub
                 </Button>
