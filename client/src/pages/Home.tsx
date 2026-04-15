@@ -238,19 +238,9 @@ export default function Home() {
             {/* Left Content */}
             <div className="space-y-6 animate-fade-in">
               <div className="inline-block bg-accent/10 px-4 py-2 rounded-full">
-                <span className={`text-base md:text-lg font-semibold ${
-                  theme === "dark" 
-                    ? "bg-gradient-to-r from-cyan-400 to-blue-400 bg-clip-text text-transparent" 
-                    : "text-accent"
-                }`}>
-                  Senior iOS Engineer
-                </span>
+                <span className="text-sm font-medium text-accent">Senior iOS Engineer</span>
               </div>
-              <h1 className={`text-6xl md:text-7xl font-bold leading-tight ${
-                theme === "dark"
-                  ? "bg-gradient-to-r from-cyan-300 via-blue-300 to-cyan-300 bg-clip-text text-transparent"
-                  : "text-primary"
-              }`}>
+              <h1 className="text-5xl md:text-6xl font-bold text-primary leading-tight">
                 Puneet Mahajan
               </h1>
               <p className="text-lg text-foreground/80 leading-relaxed max-w-lg">
